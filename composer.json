@@ -1,0 +1,8 @@
+{
+    "name": "poper/poper-october",
+    "type": "october-plugin",
+    "description": "Poper: Widgets, Popups & Embeds Powered by AI",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

@@ -71,8 +71,8 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    if (response.status === 'success' && response.accountId) {
-                        document.getElementById("accountId").value = response.accountId;
+                    if (response?.status === 'success' && response?.accountId) {
+                        document.getElementById("accountId").value = response?.accountId;
                     } else {
                         console.log('No account ID found or invalid response:', response);
                     }
