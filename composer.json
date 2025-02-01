@@ -1,5 +1,5 @@
 {
-    "name": "poper/poper-october",
+    "name": "poper/poper-plugin",
     "type": "october-plugin",
     "description": "Poper: Widgets, Popups & Embeds Powered by AI",
     "require": {
