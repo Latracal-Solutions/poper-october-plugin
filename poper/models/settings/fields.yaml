@@ -1,0 +1,7 @@
+fields:
+    account_id:
+        label: Account ID
+        type: text
+        span: full
+        placeholder: Enter your Account ID
+        required: true

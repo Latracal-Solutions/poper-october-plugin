@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ this.page.title }}</title>
+    
+    {% styles %}
+    {% scripts %}
+
+    {% if account_id %}
+    <script async src="https://app.poper.ai/share/poper.js?accountID={{ account_id }}"></script>
+    {% endif %}
+</head>
+<body>
+    <div class="content">
+        {% page %}
+    </div>
+
+    <div class="poper-form">
+        <form data-request="onSubmit" 
+              data-request-success="if (data.status === 'success') { 
+                  console.log('Script URL:', data.scriptUrl); // Debugging
+                  var head = document.getElementsByTagName('head')[0];
+                  var script = document.createElement('script');
+                  script.src = data.scriptUrl;
+                  script.async = true;
+                  head.appendChild(script);
+                  console.log('Script added successfully!');
+                  setTimeout(function() {
+                      window.location.reload(); // Optional, remove if not needed
+                  }, 500);
+              } else {
+                  alert(data.message);
+              }">
+            <div class="form-group">
+                <label for="accountId">Account ID</label>
+                <input type="text" 
+                       name="accountId" 
+                       id="accountId" 
+                       class="form-control" 
+                       required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html> -->

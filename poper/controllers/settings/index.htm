@@ -1,0 +1,133 @@
+<div class="layout" style="height: auto;">
+    <!-- Navbar -->
+    <div class="layout-row navbar bg-primary text-white" 
+         style="top: 70px; width: 100%; height: 60px; display: flex; align-items: center; padding: 0 20px; background-color: #ffffff !important;">
+        <!-- Left: Logo -->
+        <div style="flex: 1;">
+            <img src="/plugins/poper/poper/assets/images/poper-logo.svg" alt="Poper Logo" style="height: 40px;">
+        </div>
+        
+        <!-- Right: Buttons -->
+        <div style="display: flex; gap: 10px; margin-right: 20px;">
+            <a href="https://support.poper.ai/" target="_blank" class="btn btn-light" style="background-color:#f14a16; color: #ffffff;">
+                Documentation
+            </a>
+            <a href="mailto:hello@poper.ai" target="_blank" class="btn btn-light" style="background-color:#f14a16; color: #ffffff;">
+                Support
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="layout-row" 
+         style="margin-top: 80px; display: flex; gap: 20px; padding: 20px;">
+        
+        <!-- Left Section: Form -->
+        <div class="form-column">
+            <h3>Steps to Configure Poper account:</h3>
+            <ul>
+                <li style="margin-bottom: 10px;">Sign up for a <a href="https://app.poper.ai/?utm_source=octoberCMS&utm_medium=integration&utm_campaign=integration" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: #f14a16;">Poper account.</a></li>
+                <li style="margin-bottom: 10px;">Get your AccountID from the <a href="https://app.poper.ai/code" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: #f14a16;">Code Embed</a> section.</li>
+                <li style="margin-bottom: 10px;">Paste your Account ID below.</li>
+            </ul>
+            <h4 style="margin-bottom: 20px;">Configure Account</h4>
+            <div class="form-group">
+                <label for="accountId" style="font-weight: bold; margin-bottom: 5px;">Account ID</label>
+                <input type="text" 
+                    name="accountId" 
+                    id="accountId" 
+                    class="form-control" 
+                    placeholder="Enter your Account ID"
+                    required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveAccountId()" style="margin-top: 10px;background-color:#f14a16; color: #ffffff; box-shadow: none;">Submit</button>
+             <script>
+        function saveAccountId() {
+            var accountId = document.getElementById("accountId").value;
+            event.preventDefault();
+            
+            $.ajax({
+                url: '/save-account-id',
+                type: 'POST',
+                data: {accountId: accountId},
+                success: function(response) {
+                    if (response.status === 'success') {
+                        localStorage.setItem('accountId', accountId);
+                        alert('Account ID saved successfully!');
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('An error occurred while saving the account ID.');
+                }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            $.ajax({
+                url: '/get-account-id',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success' && response.accountId) {
+                        document.getElementById("accountId").value = response.accountId;
+                    } else {
+                        console.log('No account ID found or invalid response:', response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching account ID:', error);
+                    console.log('Response:', xhr.responseText);
+                }
+            });
+        });
+        </script>
+        </div>
+
+        <!-- Right Section: Video -->
+        <div class="video-column">
+            <h3 style="margin-bottom: 20px;">How to Use Poper</h3>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?si=mdxchSrTwNdH2O2c&amp;list=PLTC9PJO0DoIge9bx2pD228XlS3u6JudN3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<style>
+    .layout-row {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .form-column {
+        flex: 1;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    .video-column {
+        flex: 1;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    @media screen and (max-width: 768px) {
+        .layout-row {
+            flex-direction: column;
+        }
+
+        .form-column,
+        .video-column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+
+</div>
